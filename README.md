@@ -3,9 +3,8 @@ It must be compiled into PaQu.
 
 ```bash
 git clone https://github.com/rug-compling/paqu -b master
-cd paqu
-git submodule add -b master https://github.com/INL/paqu-federated-extension src/pqserve/gretel
-git submodule update --init --recursive
+git clone https://github.com/INL/paqu-federated-extension -b master
+cp paqu-federated-extension/*.go paqu/src/pqserve/
 
 # now compile paqu as you normally would
 ```

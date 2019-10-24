@@ -1,6 +1,6 @@
 // +build !nodbxml
 
-package gretel
+package main
 
 import (
 	"fmt"

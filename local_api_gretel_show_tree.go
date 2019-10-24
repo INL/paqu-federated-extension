@@ -1,4 +1,4 @@
-package gretel
+package main
 
 import (
 	"errors"
