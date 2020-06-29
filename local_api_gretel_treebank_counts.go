@@ -45,7 +45,7 @@ func api_gretel_treebank_counts(q *Context) {
 	counts := make(gretelCountsResponse, 0)
 
 	for _, dactFileID := range *payload.DactFileIDs {
-		dactFile, errval := getDactFileById(q.db, payload.Corpus, dactFileID)
+		dactFile, errval := getDactFileById(payload.Corpus, dactFileID)
 		if gretelSendErr("Error finding component "+dactFileID+" for corpus "+payload.Corpus, q, errval) {
 			return
 		}

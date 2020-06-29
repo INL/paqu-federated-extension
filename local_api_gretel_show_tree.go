@@ -24,7 +24,7 @@ func api_gretel_show_tree(q *Context) {
 		return
 	}
 
-	dactFile, errval := getDactFileById(q.db, corpus, dactFileID)
+	dactFile, errval := getDactFileById(corpus, dactFileID)
 	if gretelSendErr("Error finding component "+dactFileID+" for corpus "+corpus, q, errval) {
 		return
 	}

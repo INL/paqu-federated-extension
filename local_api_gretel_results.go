@@ -119,14 +119,14 @@ func api_gretel_results(q *Context) {
 	var remainingDactFileIDs = payload.RemainingDactFileIDs
 	var remainingDactFiles = make([]dactfile, 0)
 	if remainingDactFileIDs == nil {
-		remainingDactFiles, err = getDactFiles(q.db, payload.Corpus)
+		remainingDactFiles, err = getDactFiles(payload.Corpus)
 		if gretelSendErr("", q, err) {
 			return
 		}
 	} else {
 		for _, id := range *remainingDactFileIDs {
 			var file dactfile
-			file, err = getDactFileById(q.db, payload.Corpus, id)
+			file, err = getDactFileById(payload.Corpus, id)
 			if gretelSendErr("Invalid dact file id "+id, q, err) {
 				return
 			}

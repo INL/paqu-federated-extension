@@ -41,7 +41,7 @@ func api_gretel_configured_treebanks(q *Context) {
 	treebanks := make(map[string]gretelTreebank)
 TREEBANKS:
 	for id := range q.prefixes {
-		dactfiles, errval := getDactFiles(q.db, id)
+		dactfiles, errval := getDactFiles(id)
 		if errval != nil {
 			continue TREEBANKS
 		}

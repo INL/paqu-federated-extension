@@ -1,7 +1,6 @@
 package main
 
 import (
-	"database/sql"
 	"errors"
 	"fmt"
 	"net/http"
@@ -14,9 +13,9 @@ type dactfile struct {
 }
 
 /** Returns the paths to the dbxml database files for a corpus */
-func getDactFiles(db *sql.DB, corpus string) ([]dactfile, error) {
+func getDactFiles(corpus string) ([]dactfile, error) {
 	dactfiles := make([]dactfile, 0)
-	rows, errval := db.Query(fmt.Sprintf("SELECT `id`, `arch` FROM `%s_c_%s_arch` ORDER BY `id`", Cfg.Prefix, corpus))
+	rows, errval := sqlDB.Query(fmt.Sprintf("SELECT `id`, `arch` FROM `%s_c_%s_arch` ORDER BY `id`", Cfg.Prefix, corpus))
 	if errval != nil {
 		return dactfiles, errval
 	}
@@ -39,10 +38,10 @@ func getDactFiles(db *sql.DB, corpus string) ([]dactfile, error) {
 	return dactfiles, errval // probably nil
 }
 
-func getDactFileById(db *sql.DB, corpus string, id string) (dactfile, error) {
+func getDactFileById(corpus string, id string) (dactfile, error) {
 	df := dactfile{id: id}
 
-	rows, errval := db.Query(fmt.Sprintf("SELECT `arch` FROM %s_c_%s_arch WHERE id = ?", Cfg.Prefix, corpus), id)
+	rows, errval := sqlDB.Query(fmt.Sprintf("SELECT `arch` FROM %s_c_%s_arch WHERE id = ?", Cfg.Prefix, corpus), id)
 	if errval != nil {
 		return df, errval
 	}
